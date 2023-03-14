@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chiropractic Scenario Analysis</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        display: flex;
+        height: 100vh;
+      }
+      .nav {
+  background-color: #f5f5f5;
+  padding: 0px 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch; /* make all buttons the same height */
+  border-radius: 25px;
+  height: auto; /* allow nav to adjust height based on button height */
+}
+
+.nav button {
+  font-size: 1.2rem;
+  width: 100%;
+  height: 15%;
+  border-radius: 50px;
+  cursor: pointer;
+  color: black;
+  background-color: #ffffff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-grow: 1;
+  margin: 5px 5px;
+}
+
+
+      .nav button.active {
+        background-color: #1a73e8;
+        color: #fff;
+      }
+      .content {
+        padding: 20px;
+        overflow-y: auto;
+      }
+      h1,
+      h2 {
+        color: #333;
+      }
+      ul,
+      ol {
+        padding-left: 20px;
+      }
+      a {
+        color: #1a73e8;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      section {
+        height: 100%;
+        width: 100%;
+        display: none; /* Hide non-active sections */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      section.active {
+        display: flex;
+      }
+      @media screen and (min-width: 768px) {
+        .nav {
+          flex-direction: column;
+          height: 100vh;
+          width: 200px;
+          justify-content: center;
+        }
+
+        .nav button {
+          padding: 10px;
+        }
+      }
+
+      @keyframes jitter-1 {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(10px);
+        }
+      }
+
+      @keyframes jitter-2 {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(8px);
+        }
+      }
+
+      @keyframes jitter-3 {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(6px);
+        }
+      }
+
+      @keyframes jitter-4 {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(4px);
+        }
+      }
+
+      @keyframes jitter-5 {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(2px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="nav">
+        <button class="active" onclick="showSlide(0)">Introduction</button>
+        <button onclick="showSlide(1)">Logical Fallacies</button>
+        <button onclick="showSlide(2)">Statistical Errors</button>
+        <button onclick="showSlide(3)">Cognitive Biases</button>
+        <button onclick="showSlide(4)">Corrections and Recommendations</button>
+        <button onclick="showSlide(5)">References</button>
+      </nav>
+      <main class="content">
+        <!-- Add class 'active' to the first section -->
+        <section class="active">
+          <h1>Chiropractic Scenario Analysis</h1>
+          <p>
+            In this presentation, we will analyze a chiropractic scenario for
+            logical fallacies, statistical errors, and cognitive biases. We will
+            also suggest more scientifically and statistically defensible ways
+            to look at the topic.
+          </p>
+        </section>
+        <section>
+          <h2>Logical Fallacies</h2>
+          <!-- Content -->
+        </section>
+        <section>
+          <h2>Statistical Errors</h2>
+          <!-- Content -->
+        </section>
+        <section>
+          <h2>Cognitive Biases</h2>
+          <!-- Content -->
+        </section>
+        <section>
+          <h2>Corrections and Recommendations</h2>
+          <!-- Content -->
+        </section>
+        <section>
+          <h2>References</h2>
+          <!-- Content -->
+        </section>
+      </main>
+    </div>
+    <script>
+      const buttons = document.querySelectorAll(".nav button");
+      const sections = document.querySelectorAll("section");
+      let activeIndex = 0;
+    
+      function showSlide(index) {
+        if (index === activeIndex) return; // Do nothing if the selected slide is already active
+    
+        buttons[activeIndex].classList.remove("active");
+        sections[activeIndex].classList.remove("active");
+    
+        buttons[index].classList.add("active");
+        sections[index].classList.add("active");
+    
+        // Add jitter effect for a few moments
+        buttons.forEach((button, i) => {
+          const distance = Math.abs(index - i);
+          if (distance <= 5) {
+            button.style.animation = `jitter-${distance} 0.2s linear 0s 5`;
+          }
+        });
+    
+        setTimeout(() => {
+          buttons.forEach((button) => {
+            button.style.animation = "";
+          });
+        }, 1000); // Remove jitter effect after 1 second (1000 milliseconds)
+    
+        activeIndex = index;
+      }
+    </script>
+
+    </body>
+    </html>
